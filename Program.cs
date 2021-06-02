@@ -24,7 +24,7 @@ namespace CSharp.LINQ.Study
             //  All arrays are reference types in C#. They inherit from Array base class
             Console.WriteLine(scores is Array);
 
-            //  since, Array implements IEnumerable, we can use arrays in foreach
+            //  since Array implements IEnumerable, we can use arrays in foreach
             foreach (var item in scores)
             {
                 Console.WriteLine(item);
