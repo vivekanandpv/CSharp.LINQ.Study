@@ -8,17 +8,35 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            List<int> scores = new List<int> { 1, 2, 4, 7, 8, 6, 9 };
+            List<int> randomNumbers =
+                GetSequence()
+                 .Where(n =>
+                 {
+                     Console.WriteLine($"1st Where: {n}");
+                     return n % 2 != 0;
+                 })
+                 .Where(n =>
+                 {
+                     Console.WriteLine($"2nd Where: {n}");
+                     return n > 600;
+                 })
+                 //.Take(3)
+                 .TakeWhile(n =>
+                 {
+                     Console.WriteLine($"TakeWhile: {n}");
+                     return n <= 900;   //  stops when the first non-match is found
+                 })
+                 .ToList();
+        }
 
-            //  what is the first number that is greater than 6?
-            //  where is the filtration operator
-            //  First is the sequence/element operator (terminal operator)
-            int firstElement = scores.Where(s =>
+        static IEnumerable<int> GetSequence()
+        {
+            Random random = new Random();
+
+            while (true)
             {
-                Console.WriteLine($"FirstElement is executing with {s}");
-                return s > 6;
-            })
-                 .First();
+                yield return random.Next(100, 1000);
+            }
         }
     }
 }
