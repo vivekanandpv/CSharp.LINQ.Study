@@ -8,14 +8,9 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            //  Aggregate operators produce singularlities
-            int max = GetSequence().Max();              //  beware of infinite sequence
-            int min = GetSequence().Min();              //  beware of infinite sequence
-            int sum = GetSequence().Sum();              //  sequence must be numeric (int, double, decimal) or conversion required
-            double average = GetSequence().Average();   //  sequence must be numeric (int, double, decimal) or conversion required
-
-            int sumReducerNoSeed = GetSequence().Aggregate((a, b) => a + b);        //  reducer
-            int sumReducerWithSeed = GetSequence().Aggregate(0, (a, b) => a + b);   //  reducer with seed
+            bool result1 = GetSequence().All(n => n % 2 == 0);  //  are all elements of the sequence even?
+            bool result2 = GetSequence().Any(n => n == 10);      //  is there any element that is 10?
+            bool result3 = GetSequence().Contains(5);           //  does this sequence contain value 5?
         }
 
         static IEnumerable<int> GetSequence()
