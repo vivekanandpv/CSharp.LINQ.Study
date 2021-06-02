@@ -8,25 +8,24 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            int[] randomNumbers =
-                GetSequence()
-                 .Take(5)
-                 .Where(n =>
-                 {
-                     Console.WriteLine($"Sequence: {n}");
-                     return n > 0;
-                 })
-                 .Reverse() // reverses the order of elements
-                 .ToArray(); //  conversion operator / collector
+            //  Aggregate operators produce singularlities
+            int max = GetSequence().Max();              //  beware of infinite sequence
+            int min = GetSequence().Min();              //  beware of infinite sequence
+            int sum = GetSequence().Sum();              //  sequence must be numeric (int, double, decimal) or conversion required
+            double average = GetSequence().Average();   //  sequence must be numeric (int, double, decimal) or conversion required
+
+            int sumReducerNoSeed = GetSequence().Aggregate((a, b) => a + b);        //  reducer
+            int sumReducerWithSeed = GetSequence().Aggregate(0, (a, b) => a + b);   //  reducer with seed
         }
 
         static IEnumerable<int> GetSequence()
         {
-            Random random = new Random();
+            int i = 1;
 
-            while (true)
+            while (i <= 10)
             {
-                yield return random.Next(100, 1000);
+                yield return i;
+                ++i;
             }
         }
     }
