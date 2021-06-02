@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp.LINQ.Study
 {
@@ -7,24 +8,17 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            IEnumerable<int> coll = GetNumbers();
-            
-            foreach (var n in coll)
-            {
-                Console.WriteLine(n);
-            }
-        }
+            List<int> scores = new List<int> { 1, 2, 4, 7, 8, 6, 9 };
 
-        //  https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/yield
-        static IEnumerable<int> GetNumbers()
-        {
-            Console.WriteLine("GetNumbers is called");
-            Random random = new Random();
-            for (int i = 0; i < 5; i++)
+            //  what is the first number that is greater than 6?
+            //  where is the filtration operator
+            //  First is the sequence/element operator (terminal operator)
+            int firstElement = scores.Where(s =>
             {
-                Console.WriteLine("inside the generator");
-                yield return random.Next();
-            }
+                Console.WriteLine($"FirstElement is executing with {s}");
+                return s > 6;
+            })
+                 .First();
         }
     }
 }
