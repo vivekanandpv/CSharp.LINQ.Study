@@ -14,7 +14,11 @@ namespace CSharp.LINQ.Study
             int sum = GetSequence().Sum();              //  sequence must be numeric (int, double, decimal) or conversion required
             double average = GetSequence().Average();   //  sequence must be numeric (int, double, decimal) or conversion required
 
-            int sumReducerNoSeed = GetSequence().Aggregate((a, b) => a + b);        //  reducer
+            int sumReducerNoSeed = GetSequence().Aggregate((a, b) =>
+            {
+                Console.WriteLine($"Reduction: a = {a}; b = {b}");
+                return a + b;
+            });        //  reducer
             int sumReducerWithSeed = GetSequence().Aggregate(0, (a, b) => a + b);   //  reducer with seed
         }
 
