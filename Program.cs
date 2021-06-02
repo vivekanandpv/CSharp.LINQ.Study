@@ -12,36 +12,33 @@ namespace CSharp.LINQ.Study
                 GetSequence()
                  .Where(n =>
                  {
-                     Console.WriteLine($"1st Where: {n}");
-                     return n % 2 != 0;
-                 })
-                 .Where(n =>
-                 {
-                     Console.WriteLine($"2nd Where: {n}");
-                     return n > 600;
+                     Console.WriteLine($"Sequence Before: {n}");
+                     return n > 0;
                  })
                  .SkipWhile(n =>
                  {
                      Console.WriteLine($"SkipWhile: {n}");
-                     return n < 700;
+                     return n > 400;    //  what if the element is <=400?
+                                        //  what if the element is > 400?
                  })
-                 .Take(2)
-                 //  filtration
-                    //.TakeWhile(n =>    //  filtration
-                    //{
-                    //    Console.WriteLine($"TakeWhile: {n}");
-                    //    return n <= 900;   //  stops when the first non-match is found
-                    //})
-                 .ToArray(); //  conversion operator / collector
+                 .Where(n =>
+                 {
+                     Console.WriteLine($"Sequence After: {n}");
+                     return n > 0;
+                 })
+                 .ToArray();
         }
 
         static IEnumerable<int> GetSequence()
         {
             Random random = new Random();
 
-            while (true)
+            int i = 0;
+
+            while (i < 10)
             {
                 yield return random.Next(100, 1000);
+                ++i;
             }
         }
     }
