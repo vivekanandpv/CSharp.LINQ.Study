@@ -10,28 +10,9 @@ namespace CSharp.LINQ.Study
         {
             int[] randomNumbers =
                 GetSequence()
-                 .Where(n =>
-                 {
-                     Console.WriteLine($"1st Where: {n}");
-                     return n % 2 != 0;
-                 })
-                 .Where(n =>
-                 {
-                     Console.WriteLine($"2nd Where: {n}");
-                     return n > 600;
-                 })
-                 .SkipWhile(n =>
-                 {
-                     Console.WriteLine($"SkipWhile: {n}");
-                     return n < 700;
-                 })
-                 .Take(2)
-                 //  filtration
-                    //.TakeWhile(n =>    //  filtration
-                    //{
-                    //    Console.WriteLine($"TakeWhile: {n}");
-                    //    return n <= 900;   //  stops when the first non-match is found
-                    //})
+                 .Take(20)
+                 .OrderBy(n => n)   //  Key selector
+                 //.OrderByDescending(n => n)   //  also possible
                  .ToArray(); //  conversion operator / collector
         }
 
