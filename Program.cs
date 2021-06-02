@@ -20,13 +20,13 @@ namespace CSharp.LINQ.Study
                      Console.WriteLine($"2nd Where: {n}");
                      return n > 600;
                  })
-                 //.Take(3)
-                 .TakeWhile(n =>
+                 //.Take(3) //  filtration
+                 .TakeWhile(n =>    //  filtration
                  {
                      Console.WriteLine($"TakeWhile: {n}");
                      return n <= 900;   //  stops when the first non-match is found
                  })
-                 .ToList();
+                 .ToList(); //  conversion operator / collector
         }
 
         static IEnumerable<int> GetSequence()
