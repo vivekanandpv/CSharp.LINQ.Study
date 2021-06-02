@@ -18,8 +18,8 @@ namespace CSharp.LINQ.Study
                  .SkipWhile(n =>
                  {
                      Console.WriteLine($"SkipWhile: {n}");
-                     return n > 400;    //  what if the element is <=400?
-                                        //  what if the element is > 400?
+                     return n > 400;    //  keep skipping until the first non-match is found
+                                        //  once the first non-match is found, this filter is not applied
                  })
                  .Where(n =>
                  {
