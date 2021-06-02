@@ -8,9 +8,33 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            bool result1 = GetSequence().All(n => n % 2 == 0);  //  are all elements of the sequence even?
-            bool result2 = GetSequence().Any(n => n == 10);      //  is there any element that is 10?
-            bool result3 = GetSequence().Contains(5);           //  does this sequence contain value 5?
+            var groupResult1 = GetSequence()
+                .Where(n => n % 2 == 0)
+                .GroupBy(k => "Even");
+
+            foreach (var item in groupResult1)
+            {
+                Console.WriteLine($"Key: {item.Key}");
+                foreach (var e in item)
+                {
+                    Console.WriteLine($"Value: {e}");
+                }
+            }
+
+            Console.WriteLine("--------------------------------------");
+
+            var groupResult2 = GetSequence()
+                .Where(n => n % 2 != 0)
+                .GroupBy(k => "Squares of odd numbers", k => k * k);
+
+            foreach (var item in groupResult2)
+            {
+                Console.WriteLine($"Key: {item.Key}");
+                foreach (var e in item)
+                {
+                    Console.WriteLine($"Value: {e}");
+                }
+            }
         }
 
         static IEnumerable<int> GetSequence()
