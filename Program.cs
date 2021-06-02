@@ -8,7 +8,7 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            List<int> randomNumbers =
+            int[] randomNumbers =
                 GetSequence()
                  .Where(n =>
                  {
@@ -20,13 +20,19 @@ namespace CSharp.LINQ.Study
                      Console.WriteLine($"2nd Where: {n}");
                      return n > 600;
                  })
-                 //.Take(3) //  filtration
-                 .TakeWhile(n =>    //  filtration
+                 .SkipWhile(n =>
                  {
-                     Console.WriteLine($"TakeWhile: {n}");
-                     return n <= 900;   //  stops when the first non-match is found
+                     Console.WriteLine($"SkipWhile: {n}");
+                     return n < 700;
                  })
-                 .ToList(); //  conversion operator / collector
+                 .Take(2)
+                 //  filtration
+                    //.TakeWhile(n =>    //  filtration
+                    //{
+                    //    Console.WriteLine($"TakeWhile: {n}");
+                    //    return n <= 900;   //  stops when the first non-match is found
+                    //})
+                 .ToArray(); //  conversion operator / collector
         }
 
         static IEnumerable<int> GetSequence()
