@@ -8,9 +8,21 @@ namespace CSharp.LINQ.Study
     {
         static void Main(string[] args)
         {
-            bool result1 = GetSequence().All(n => n % 2 == 0);  //  are all elements of the sequence even?
-            bool result2 = GetSequence().Any(n => n == 10);      //  is there any element that is 10?
-            bool result3 = GetSequence().Contains(5);           //  does this sequence contain value 5?
+            //  https://docs.microsoft.com/en-us/dotnet/api/system.linq.queryable.groupby?view=net-5.0
+            var result =
+                GetSequence()
+                .Where(n => n % 2 == 0)
+                .GroupBy(_ => "Even Numbers");
+
+            foreach (var ge in result)
+            {
+                Console.WriteLine($"Group Key: {ge.Key}");
+
+                foreach (var n in ge)
+                {
+                    Console.WriteLine($"Element: {n}");
+                }
+            }
         }
 
         static IEnumerable<int> GetSequence()
