@@ -10,9 +10,13 @@ namespace CSharp.LINQ.Study
         {
             int[] randomNumbers =
                 GetSequence()
-                 .Take(20)
-                 .OrderBy(n => n)   //  Key selector
-                 //.OrderByDescending(n => n)   //  also possible
+                 .Take(5)
+                 .Where(n =>
+                 {
+                     Console.WriteLine($"Sequence: {n}");
+                     return n > 0;
+                 })
+                 .Reverse() // reverses the order of elements
                  .ToArray(); //  conversion operator / collector
         }
 
